@@ -66,7 +66,7 @@ For example, if 'dog' appears 35 times and 'collar' appears 10 times the sentenc
 
 ### Computing `positionScore`
 
-Computing `positionScore` is a lot simpler. Given the list of relevant sentences found in the baseline, a sentence's `positionScore` is equal to the length of the baseline sentences list minus its own position. For example if the baseline approach returns 10 sentences, the first sentence's score is 10, the second is 9, etc.
+Computing `positionScore` is a lot simpler. A sentence's `positionScore` is equal to the number of sentences returned in the baseline approach minus its own index. For example if the baseline approach returns 10 sentences, the first sentence's score is 10, the second is 9, etc.
 
 ### Printing relevant sentences
 
