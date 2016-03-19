@@ -23,7 +23,7 @@ into your terminal and hit enter. Replace 'SEARCH-TERM' with your search term. C
 
 # How to generate corpus.txt
 
-corpus.txt contains the corpus of plain text used to generate (via [EmoryNLP](https://github.com/emorynlp)) `corpus.txt.nlp` (instructions [here](https://github.com/emory-courses/cs329/wiki/Homework-2)). Scraping the contents of the article manually would be too much of a hassle so I created `scrape.py` (also in this directory) to do the heavy lifting for me. The script takes in a list of wikipedia articles and outputs them as plain-text in `corpus.txt`. The beauty of `scrape.py` is that it works on all wikipedia pages. `scrape.py` works as follows: 
+`corpus.txt` contains the corpus of plain text used to generate (via [EmoryNLP](https://github.com/emorynlp)) `corpus.txt.nlp` (instructions [here](https://github.com/emory-courses/cs329/wiki/Homework-2)). Scraping the contents of the articles manually would be too much of a hassle so I created `scrape.py` (also in this directory) to do the heavy lifting for me. The script takes in a list of wikipedia article URLs and outputs them as plain-text to `corpus.txt`. The beauty of `scrape.py` is that it works on all wikipedia pages. `scrape.py` works as follows: 
 
 1. Iterate through the array of wikipedia urls
 2. Download their contents
@@ -32,7 +32,7 @@ corpus.txt contains the corpus of plain text used to generate (via [EmoryNLP](ht
 5. remove the references section
 6. Use soup's built in `get_text()` function to turn the HTML into plain text.
 7. Remove lines not ending in a "." (some headings get through)
-8. Export all lines to corpus.txt
+8. Export all lines to `corpus.txt`
 
 # Improving the Naive Approach
 
