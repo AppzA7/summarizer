@@ -80,7 +80,7 @@ This approach seems to work well. At first I didn't use `positionScore` but it e
 2. Replace pronouns with the nouns to which they are referring to. Sometimes its hard to tell.
 3. Sometimes a noun appears a lot even though they aren't too important to the article. For example the term "President" almost always precedes the naming of a president. This can possibly be accounted for by ignoring the nouns with the top X scores (basically removing the outliers).
 4. Extremely long sentences have more nouns and therefore will have a higher noun score. An idea would be to find the average number of nouns that occur in each sentence (lets say 4) and only include the 4 nouns with the highest score when computing nounScore.
-5. Sometimes a president is referred too a lot in an article that appears before their own, so sentences from that article shows up first
+5. Sometimes a president is referred to a lot in an article that appears before their own, so sentences from that article show up first
 
 
 
