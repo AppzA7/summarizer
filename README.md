@@ -62,7 +62,7 @@ A sentences `nounScore` is computed as follows:
 1. For every noun that appears in the baseline, count how many total times they appear and assign the noun that score.
 2. For each sentence, total the scores of all the nouns that appear in that sentence. This is the sentences `nounScore`.
 
-For example, if 'dog' appears 35 times and 'collar' appears 10 times the sentence "The dog hates his collar" would be assigned a `nounScore` of 35.
+For example, if 'dog' appears 35 times and 'collar' appears 10 times the sentence "The dog hates his collar" would be assigned a `nounScore` of 45.
 
 ### Computing `positionScore`
 
