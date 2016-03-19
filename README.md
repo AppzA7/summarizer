@@ -53,7 +53,7 @@ There are two factors that contribute to a sentences score, and they rely on the
 1. Nouns that appear more often than others do so because they are more important
 2. Sentences that appear earlier than others do so because they are more important
 
-Each sentence is assigned a `nounScore` and a `positionScore`. In order to find the `sentenceScore` we multiply `nounScore` and `positionScore`. As a result, `sentanceScore` is maximized when `nounScore` and `positionScore` are both high.
+Each sentence is assigned a `nounScore` and a `positionScore`. In order to find the `sentenceScore` we multiply `nounScore` and `positionScore`. As a result, `sentanceScore` is maximized when `nounScore` and `positionScore` are both of high magnitude.
 
 ### Computing `nounScore`
 
