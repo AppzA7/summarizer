@@ -256,22 +256,33 @@ sentancesWithScores = list()
 
 sentanceScores = list()
 
+print "-----------------------------------------------------------"
+
 # assign each sentance a score. score == sum of noun scores + the distance from the sentance to the last occurence of a sentance with q in it
+
+#edits - divide by sqrt of length, to compensate for long sentences having more nouns
+# - take sqrt of position score to count for it less
 
 for i,nodes in enumerate(relevantNodes):
 
-    nounScore = 0
+    nounScore = 0.00
     positionScore = len(relevantNodes) - i
 
     for n in nodes:
         if n.lemma in nounScores:
             nounScore += nounScores[n.lemma]
 
-    score = nounScore*positionScore
+        if n.word_form.lower() == q:
+            # print n.dependency_label
+            if n.dependency_label[0:5].lower() != "nsubj":
+                nounScore = 0
+
+
+    score = 1.00*(nounScore*positionScore)/(pow(len(nodes),0.5))
 
     sentancesWithScores += [(nodesToSentance(nodes,0),score)]
 
-    sentanceScores += [nounScore*positionScore]
+    sentanceScores += [score]
 
 #########
 

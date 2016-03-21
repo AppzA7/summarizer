@@ -13,7 +13,7 @@ This tool is a summarizer written for Computational Linguistics (CS329) at Emory
 
 # How to Use the Summarizer
 
-Open your terminal and make sure you are in the directory containing `summarizer.py`, `corpus.txt.nlp`. You can read more about how to obtain corpus.txt.nlp [here](https://github.com/emory-courses/cs329/wiki/Homework-2), although it will also be discussed later in the article. 
+Open your terminal and make sure you are in the directory containing `summarizer.py`, `corpus.txt.nlp`. You can read more about how to obtain `corpus.txt.nlp` [here](https://github.com/emory-courses/cs329/wiki/Homework-2), although it will also be discussed later in the article. 
 
 There are two ways to use the program. There is a naive version (default) that returns all the sentences that include the given search term. In order to run this version type 
 `python summarizer.py corpus.txt.nlp SEARCH-TERM` 
@@ -42,7 +42,7 @@ Returning a list of all sentences containing a search term is fairly trivial- si
 
 The real hard part lies in improving this baseline approach to return the most important sentences containing the search term. My basic approach goes as follows:
 
-1. Create a list of all sentences containing search term q in lemma form (already compiled through the baseline approach)
+1. Create a list of all sentences containing search term q in lemma form as the subject of the sentence.
 2. Assign a relevance score to each sentence
 3. Print sentences with the top X scores (by default 5) in the order in which they appear in the corpus.
 
@@ -53,14 +53,14 @@ There are two factors that contribute to a sentences score, and they rely on the
 1. Nouns that appear more often than others do so because they are more important
 2. Sentences that appear earlier than others do so because they are more important
 
-Each sentence is assigned a `nounScore` and a `positionScore`. In order to find the `sentenceScore` we multiply `nounScore` and `positionScore`. As a result, `sentanceScore` is maximized when `nounScore` and `positionScore` are both of high magnitude.
+Each sentence is assigned a `nounScore` and a `positionScore`. In order to find the `sentenceScore` we multiply `nounScore` and `positionScore` and divide by the square root of length of the sentence (to compensate for long sentences having more nouns, but still rewarding long sentences a little bit) . As a result, `sentanceScore` is maximized when `nounScore` and `positionScore` are both of high magnitude. 
 
 ### Computing `nounScore`
 
 A sentences `nounScore` is computed as follows:
 
 1. For every noun that appears in the baseline, count how many total times they appear and assign the noun that score.
-2. For each sentence, total the scores of all the nouns that appear in that sentence. This is the sentences `nounScore`.
+2. For each sentence, total the scores of all the nouns that appear in that sentence.
 
 For example, if 'dog' appears 35 times and 'collar' appears 10 times the sentence "The dog hates his collar" would be assigned a `nounScore` of 45.
 
@@ -79,7 +79,7 @@ This approach seems to work well. At first I didn't use `positionScore` but it e
 1. Handle phrases instead of only words
 2. Replace pronouns with the nouns to which they are referring to. Sometimes its hard to tell.
 3. Sometimes a noun appears a lot even though they aren't too important to the article. For example the term "President" almost always precedes the naming of a president. This can possibly be accounted for by ignoring the nouns with the top X scores (basically removing the outliers).
-4. Extremely long sentences have more nouns and therefore will have a higher noun score. An idea would be to find the average number of nouns that occur in each sentence (lets say 4) and only include the 4 nouns with the highest score when computing nounScore.
+4. Extremely long sentences have more nouns and therefore will have a higher noun score. An idea would be to find the average number of nouns that occur in each sentence (lets say 4) and only include the 4 nouns with the highest score when computing nounScore. EDIT: fixed by dividing by sqrt of length of sentence 3/21/16
 5. Sometimes a president is referred to a lot in an article that appears before their own, so sentences from that article show up first
 
 
